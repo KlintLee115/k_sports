@@ -36,9 +36,19 @@ void ConfigureCors(IServiceCollection services, IWebHostEnvironment environment)
     {
         options.AddPolicy(CorsPolicyName, corsBuilder =>
         {
-            corsBuilder.WithOrigins(environment.IsDevelopment() ? "http://localhost:3000" : "https://k-sports.vercel.app")
-                       .AllowAnyMethod()
-                       .AllowAnyHeader();
+           if (environment.IsDevelopment())
+            {
+                corsBuilder.WithOrigins("http://localhost:3000")
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+            }
+            else
+            {
+                corsBuilder.WithOrigins("https://k-sports-assignment.vercel.app", 
+                                        "https://k-sports.vercel.app")
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+            }
         });
     });
 }
