@@ -4,7 +4,6 @@ import HamburgerMenuIcon from "./HamburgerMenuIcon";
 import UserOptions from "./UserOptions";
 import { NavLinkProp } from "@/types/types"
 import SearchBar from "./SearchBar";
-import AdminLink from "./AdminLink";
 
 const NavLinks: NavLinkProp[] = [
   {
@@ -38,7 +37,10 @@ export default function Header() {
             </Link>
           ))}
 
-          <AdminLink />
+          <Link href="/admin" className="font-semibold text-center text-base text-[#767676] hover:underline underline-offset-[4px] 
+        decoration-[2px] hover:text-[#262626] border-r-[2px] px-7 border-r-gray-300 last:border-r-0 hidden md:inline">
+            Admin
+          </Link>
 
           {/* Larger devices display */}
           <UserOptions />

@@ -14,5 +14,5 @@ export default function AdminRoot({children}: {children: React.ReactNode}) {
         redirect('/api/auth/signin')
     }
 
-    return status === "authenticated" && session.user.isAdmin && children
+    return status === "authenticated" && session.user.isAdmin ? children : <div>Unauthorized</div>
 }

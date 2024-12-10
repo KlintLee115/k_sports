@@ -2,32 +2,15 @@
 
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { FaUser, FaCaretDown } from "react-icons/fa";
 
 export default function UserOptions() {
 
     const [showUserOptions, setShowUserOptions] = useState(false)
-    const dropdownRef = useRef<HTMLDivElement>(null)
 
     const { data: session, status } = useSession()
     const router = useRouter()
-
-    useEffect(() => {
-        function handleOutsideClick(event: MouseEvent) {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-                setShowUserOptions(false);
-            }
-        }
-    
-        if (showUserOptions) {
-            document.addEventListener("mousedown", handleOutsideClick);
-        }
-    
-        return () => {
-            document.removeEventListener("mousedown", handleOutsideClick);
-        };
-    }, [showUserOptions])
 
     function checkUser() {
 
@@ -37,7 +20,7 @@ export default function UserOptions() {
     }
 
     return (
-        <div ref={dropdownRef} className="relative font-medium text-center text-base px-3 cursor-pointer text-[#767676]">
+        <div className="relative font-medium text-center text-base px-3 cursor-pointer text-[#767676]">
             <div onClick={() => setShowUserOptions(curr => !curr)} className="items-center hidden md:flex">
                 <FaUser />
                 <FaCaretDown />
